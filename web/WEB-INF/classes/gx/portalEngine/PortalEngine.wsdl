@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://portalEngine.ismp.chinatelecom.com" xmlns:intf="http://portalEngine.ismp.chinatelecom.com" xmlns:tns1="http://req.portalEngine.ismp.chinatelecom.com" xmlns:tns2="http://rsp.portalEngine.ismp.chinatelecom.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://portalEngine.ismp.chinatelecom.com">
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://req.portalEngine.ismp.chinatelecom.com" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://rsp.portalEngine.ismp.chinatelecom.com"/>
+			<import namespace="http://portalEngine.ismp.chinatelecom.com"/>
+			<complexType name="CreateSubscriptionReq">
+				<sequence>
+					<element name="DA" nillable="true" type="xsd:string"/>
+					<element name="DAType" type="xsd:int"/>
+					<element name="FA" nillable="true" type="xsd:string"/>
+					<element name="FAType" type="xsd:int"/>
+					<element name="ID" nillable="true" type="xsd:string"/>
+					<element name="IDType" type="xsd:int"/>
+					<element name="OA" nillable="true" type="xsd:string"/>
+					<element name="OAType" type="xsd:int"/>
+					<element name="chanelPlayerID" nillable="true" type="xsd:string"/>
+					<element name="eventID" nillable="true" type="xsd:string" minOccurs="0"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="WithdrawSubscriptionReq">
+				<sequence>
+					<element name="ID" nillable="true" type="xsd:string"/>
+					<element name="IDType" type="xsd:int"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="GetSubscriptionReq">
+				<sequence>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="WithdrawAllSubscriptionReq">
+				<sequence>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="ModifyPasswordReq">
+				<sequence>
+					<element name="newPassword" nillable="true" type="xsd:string"/>
+					<element name="oldPassword" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="ResetPasswordReq">
+				<sequence>
+					<element name="newPassword" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="ReadUserReq">
+				<sequence>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="ModifyUserReq">
+				<sequence>
+					<element name="email" nillable="true" type="xsd:string"/>
+					<element name="languagePref" type="xsd:int"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="AuthenticateUserReq">
+				<sequence>
+					<element name="password"  type="xsd:string" minOccurs="0"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userAgent" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="AuthorizeUserReq">
+				<sequence>
+					<element name="ID" nillable="true" type="xsd:string"/>
+					<element name="IDType" type="xsd:int"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="QuerySubscriptionHistoryReq">
+				<sequence>
+					<element name="endTime" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="startTime" nillable="true" type="xsd:string"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="UseServiceReq">
+				<sequence>
+					<element name="productID" nillable="true" type="xsd:string"/>
+					<element name="hasFeatureStr" type="xsd:int"/>
+					<element name="featureStr" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+					<element name="chanelPlayerID" nillable="true" type="xsd:string"/>
+					<element name="eventID" nillable="true" type="xsd:string" minOccurs="0"/>
+				</sequence>
+			</complexType>
+			<complexType name="CreateUserReq">
+				<sequence>
+					<element name="email" nillable="true" type="xsd:string"/>
+					<element name="languagePref" nillable="true" type="xsd:int"/>
+					<element name="password" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceID" nillable="true" type="xsd:string"/>
+					<element name="srcDeviceType" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userID" nillable="true" type="xsd:string"/>
+					<element name="userIDType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+		</schema>
+		<schema elementFormDefault="qualified" targetNamespace="http://portalEngine.ismp.chinatelecom.com" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://req.portalEngine.ismp.chinatelecom.com"/>
+			<import namespace="http://rsp.portalEngine.ismp.chinatelecom.com"/>
+			<element name="createSubscriptionReq" type="tns1:CreateSubscriptionReq"/>
+			<element name="createSubscriptionReturn" type="tns2:CreateSubscriptionRsp"/>
+			<element name="withdrawSubscriptionReq" type="tns1:WithdrawSubscriptionReq"/>
+			<element name="withdrawSubscriptionReturn" type="tns2:WithdrawSubscriptionRsp"/>
+			<element name="getSubscriptionReq" type="tns1:GetSubscriptionReq"/>
+			<complexType name="ArrayOf_tns2_SubInfo">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:SubInfo"/>
+				</sequence>
+			</complexType>
+			<element name="getSubscriptionReturn" type="tns2:GetSubscriptionRsp"/>
+			<element name="withdrawAllSubscriptionReq" type="tns1:WithdrawAllSubscriptionReq"/>
+			<element name="withdrawAllSubscriptionReturn" type="tns2:ResponseInfo"/>
+			<element name="modifyPasswordReq" type="tns1:ModifyPasswordReq"/>
+			<element name="modifyPasswordReturn" type="tns2:ResponseInfo"/>
+			<element name="resetPasswordReq" type="tns1:ResetPasswordReq"/>
+			<element name="resetPasswordReturn" type="tns2:ResponseInfo"/>
+			<element name="readUserReq" type="tns1:ReadUserReq"/>
+			<element name="readUserReturn" type="tns2:ReadUserRsp"/>
+			<element name="modifyUserReq" type="tns1:ModifyUserReq"/>
+			<element name="modifyUserReturn" type="tns2:ResponseInfo"/>
+			<element name="authenticateUserReq" type="tns1:AuthenticateUserReq"/>
+			<element name="authenticateUserReturn" type="tns2:AuthenticateUserRsp"/>
+			<element name="authorizeUserReq" type="tns1:AuthorizeUserReq"/>
+			<element name="authorizeUserReturn" type="tns2:AuthorizeUserRsp"/>
+			<element name="querySubscriptionHistoryReq" type="tns1:QuerySubscriptionHistoryReq"/>
+			<complexType name="ArrayOf_tns2_SubHistoryInfo">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:SubHistoryInfo"/>
+				</sequence>
+			</complexType>
+			<element name="querySubscriptionHistoryReturn" type="tns2:QuerySubscriptionHistoryRsp"/>
+			<element name="useServiceReq" type="tns1:UseServiceReq"/>
+			<element name="useServiceReturn" type="tns2:ResponseInfo"/>
+			<element name="createUserReq" type="tns1:CreateUserReq"/>
+			<element name="createUserReturn" type="tns2:ResponseInfo"/>
+		</schema>
+		<schema elementFormDefault="qualified" targetNamespace="http://rsp.portalEngine.ismp.chinatelecom.com" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://req.portalEngine.ismp.chinatelecom.com"/>
+			<import namespace="http://portalEngine.ismp.chinatelecom.com"/>
+			<complexType name="CreateSubscriptionRsp">
+				<sequence>
+					<element name="effectiveTime" nillable="true" type="xsd:string"/>
+					<element name="expireTime" nillable="true" type="xsd:string"/>
+					<element name="resultCode" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="subscriptionID" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="WithdrawSubscriptionRsp">
+				<sequence>
+					<element name="expireTime" nillable="true" type="xsd:string"/>
+					<element name="resultCode" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="SubInfo">
+				<sequence>
+					<element name="DA" nillable="true" type="xsd:string"/>
+					<element name="DAType" type="xsd:int"/>
+					<element name="FA" nillable="true" type="xsd:string"/>
+					<element name="FAType" type="xsd:int"/>
+					<element name="ID" nillable="true" type="xsd:string"/>
+					<element name="IDType" type="xsd:int"/>
+					<element name="OA" nillable="true" type="xsd:string"/>
+					<element name="OAType" type="xsd:int"/>
+					<element name="corpID" nillable="true" type="xsd:string"/>
+					<element name="effectiveTime" nillable="true" type="xsd:string"/>
+					<element name="expireTime" nillable="true" type="xsd:string"/>
+					<element name="resumeTime" nillable="true" type="xsd:string"/>
+					<element name="status" type="xsd:int"/>
+					<element name="subscribeTime" nillable="true" type="xsd:string"/>
+					<element name="suspendTime" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="ServiceIDList">
+				<sequence>
+					<element name="serviceID" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="GetSubscriptionRsp">
+				<sequence>
+					<element name="resultCode" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="subInfo" nillable="true" type="impl:ArrayOf_tns2_SubInfo"/>
+				</sequence>
+			</complexType>
+			<complexType name="ResponseInfo">
+				<sequence>
+					<element name="resultCode" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="ReadUserRsp">
+				<sequence>
+					<element name="email" nillable="true" type="xsd:string"/>
+					<element name="languagePref" type="xsd:int"/>
+					<element name="resultCode" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="userAgent" nillable="true" type="xsd:string"/>
+					<element name="userName" nillable="true" type="xsd:string"/>
+					<element name="userPayType" type="xsd:int"/>
+					<element name="state" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="AuthenticateUserRsp">
+				<sequence>
+					<element name="corpID" nillable="true" type="xsd:string"/>
+					<element name="corpTag" type="xsd:int"/>
+					<element name="resultCode" type="xsd:int"/>
+					<element name="SPID" nillable="true" type="xsd:string"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="testUserTag" type="xsd:int"/>
+					<element name="registered" type="xsd:int"/>
+					<element name="whiteListServiceNum" type="xsd:int"/>
+					<element name="serviceIDList" nillable="true" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</complexType>
+			<complexType name="AuthorizeUserRsp">
+				<sequence>
+					<element name="resultCode" type="xsd:int"/>
+					<element name="status" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="SubHistoryInfo">
+				<sequence>
+					<element name="ID" nillable="true" type="xsd:string"/>
+					<element name="IDType" type="xsd:int"/>
+					<element name="operationTime" nillable="true" type="xsd:string"/>
+					<element name="operationType" type="xsd:int"/>
+				</sequence>
+			</complexType>
+			<complexType name="QuerySubscriptionHistoryRsp">
+				<sequence>
+					<element name="resultCode" type="xsd:int"/>
+					<element name="streamingNo" nillable="true" type="xsd:string"/>
+					<element name="subHistoryInfo" nillable="true" type="impl:ArrayOf_tns2_SubHistoryInfo"/>
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="getSubscriptionResponse">
+		<wsdl:part name="getSubscriptionReturn" element="impl:getSubscriptionReturn"/>
+	</wsdl:message>
+	<wsdl:message name="getSubscriptionRequest">
+		<wsdl:part name="getSubscriptionReq" element="impl:getSubscriptionReq"/>
+	</wsdl:message>
+	<wsdl:message name="withdrawSubscriptionResponse">
+		<wsdl:part name="withdrawSubscriptionReturn" element="impl:withdrawSubscriptionReturn"/>
+	</wsdl:message>
+	<wsdl:message name="querySubscriptionHistoryResponse">
+		<wsdl:part name="querySubscriptionHistoryReturn" element="impl:querySubscriptionHistoryReturn"/>
+	</wsdl:message>
+	<wsdl:message name="createSubscriptionResponse">
+		<wsdl:part name="createSubscriptionReturn" element="impl:createSubscriptionReturn"/>
+	</wsdl:message>
+	<wsdl:message name="useServiceResponse">
+		<wsdl:part name="useServiceReturn" element="impl:useServiceReturn"/>
+	</wsdl:message>
+	<wsdl:message name="querySubscriptionHistoryRequest">
+		<wsdl:part name="querySubscriptionHistoryReq" element="impl:querySubscriptionHistoryReq"/>
+	</wsdl:message>
+	<wsdl:message name="modifyUserRequest">
+		<wsdl:part name="modifyUserReq" element="impl:modifyUserReq"/>
+	</wsdl:message>
+	<wsdl:message name="authenticateUserResponse">
+		<wsdl:part name="authenticateUserReturn" element="impl:authenticateUserReturn"/>
+	</wsdl:message>
+	<wsdl:message name="readUserResponse">
+		<wsdl:part name="readUserReturn" element="impl:readUserReturn"/>
+	</wsdl:message>
+	<wsdl:message name="modifyPasswordResponse">
+		<wsdl:part name="modifyPasswordReturn" element="impl:modifyPasswordReturn"/>
+	</wsdl:message>
+	<wsdl:message name="authorizeUserRequest">
+		<wsdl:part name="authorizeUserReq" element="impl:authorizeUserReq"/>
+	</wsdl:message>
+	<wsdl:message name="resetPasswordRequest">
+		<wsdl:part name="resetPasswordReq" element="impl:resetPasswordReq"/>
+	</wsdl:message>
+	<wsdl:message name="modifyUserResponse">
+		<wsdl:part name="modifyUserReturn" element="impl:modifyUserReturn"/>
+	</wsdl:message>
+	<wsdl:message name="withdrawAllSubscriptionRequest">
+		<wsdl:part name="withdrawAllSubscriptionReq" element="impl:withdrawAllSubscriptionReq"/>
+	</wsdl:message>
+	<wsdl:message name="modifyPasswordRequest">
+		<wsdl:part name="modifyPasswordReq" element="impl:modifyPasswordReq"/>
+	</wsdl:message>
+	<wsdl:message name="withdrawSubscriptionRequest">
+		<wsdl:part name="withdrawSubscriptionReq" element="impl:withdrawSubscriptionReq"/>
+	</wsdl:message>
+	<wsdl:message name="createUserResponse">
+		<wsdl:part name="createUserReturn" element="impl:createUserReturn"/>
+	</wsdl:message>
+	<wsdl:message name="createUserRequest">
+		<wsdl:part name="createUserReq" element="impl:createUserReq"/>
+	</wsdl:message>
+	<wsdl:message name="authenticateUserRequest">
+		<wsdl:part name="authenticateUserReq" element="impl:authenticateUserReq"/>
+	</wsdl:message>
+	<wsdl:message name="createSubscriptionRequest">
+		<wsdl:part name="createSubscriptionReq" element="impl:createSubscriptionReq"/>
+	</wsdl:message>
+	<wsdl:message name="withdrawAllSubscriptionResponse">
+		<wsdl:part name="withdrawAllSubscriptionReturn" element="impl:withdrawAllSubscriptionReturn"/>
+	</wsdl:message>
+	<wsdl:message name="resetPasswordResponse">
+		<wsdl:part name="resetPasswordReturn" element="impl:resetPasswordReturn"/>
+	</wsdl:message>
+	<wsdl:message name="authorizeUserResponse">
+		<wsdl:part name="authorizeUserReturn" element="impl:authorizeUserReturn"/>
+	</wsdl:message>
+	<wsdl:message name="useServiceRequest">
+		<wsdl:part name="useServiceReq" element="impl:useServiceReq"/>
+	</wsdl:message>
+	<wsdl:message name="readUserRequest">
+		<wsdl:part name="readUserReq" element="impl:readUserReq"/>
+	</wsdl:message>
+	<wsdl:portType name="PortalEngine">
+		<wsdl:operation name="createSubscription" parameterOrder="createSubscriptionReq">
+			<wsdl:input name="createSubscriptionRequest" message="impl:createSubscriptionRequest"/>
+			<wsdl:output name="createSubscriptionResponse" message="impl:createSubscriptionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="withdrawSubscription" parameterOrder="withdrawSubscriptionReq">
+			<wsdl:input name="withdrawSubscriptionRequest" message="impl:withdrawSubscriptionRequest"/>
+			<wsdl:output name="withdrawSubscriptionResponse" message="impl:withdrawSubscriptionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getSubscription" parameterOrder="getSubscriptionReq">
+			<wsdl:input name="getSubscriptionRequest" message="impl:getSubscriptionRequest"/>
+			<wsdl:output name="getSubscriptionResponse" message="impl:getSubscriptionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="withdrawAllSubscription" parameterOrder="withdrawAllSubscriptionReq">
+			<wsdl:input name="withdrawAllSubscriptionRequest" message="impl:withdrawAllSubscriptionRequest"/>
+			<wsdl:output name="withdrawAllSubscriptionResponse" message="impl:withdrawAllSubscriptionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="modifyPassword" parameterOrder="modifyPasswordReq">
+			<wsdl:input name="modifyPasswordRequest" message="impl:modifyPasswordRequest"/>
+			<wsdl:output name="modifyPasswordResponse" message="impl:modifyPasswordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="resetPassword" parameterOrder="resetPasswordReq">
+			<wsdl:input name="resetPasswordRequest" message="impl:resetPasswordRequest"/>
+			<wsdl:output name="resetPasswordResponse" message="impl:resetPasswordResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="readUser" parameterOrder="readUserReq">
+			<wsdl:input name="readUserRequest" message="impl:readUserRequest"/>
+			<wsdl:output name="readUserResponse" message="impl:readUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="modifyUser" parameterOrder="modifyUserReq">
+			<wsdl:input name="modifyUserRequest" message="impl:modifyUserRequest"/>
+			<wsdl:output name="modifyUserResponse" message="impl:modifyUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="authenticateUser" parameterOrder="authenticateUserReq">
+			<wsdl:input name="authenticateUserRequest" message="impl:authenticateUserRequest"/>
+			<wsdl:output name="authenticateUserResponse" message="impl:authenticateUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="authorizeUser" parameterOrder="authorizeUserReq">
+			<wsdl:input name="authorizeUserRequest" message="impl:authorizeUserRequest"/>
+			<wsdl:output name="authorizeUserResponse" message="impl:authorizeUserResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="querySubscriptionHistory" parameterOrder="querySubscriptionHistoryReq">
+			<wsdl:input name="querySubscriptionHistoryRequest" message="impl:querySubscriptionHistoryRequest"/>
+			<wsdl:output name="querySubscriptionHistoryResponse" message="impl:querySubscriptionHistoryResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="useService" parameterOrder="useServiceReq">
+			<wsdl:input name="useServiceRequest" message="impl:useServiceRequest"/>
+			<wsdl:output name="useServiceResponse" message="impl:useServiceResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="PortalEngineSoapBinding" type="impl:PortalEngine">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="createSubscription">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="withdrawSubscription">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getSubscription">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="withdrawAllSubscription">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="modifyPassword">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="resetPassword">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="readUser">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="modifyUser">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="authenticateUser">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="authorizeUser">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="querySubscriptionHistory">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="useService">
+			<wsdlsoap:operation/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PortalEngineService">
+		<wsdl:port name="PortalEngine" binding="impl:PortalEngineSoapBinding">
+			<wsdlsoap:address location="http://132.228.241.114:8080/services/PortalEngine"/>
+		</wsdl:port>
+	</wsdl:service>
+	<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+</wsdl:definitions>
